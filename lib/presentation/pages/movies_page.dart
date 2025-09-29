@@ -2,11 +2,25 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:provider/provider.dart';
+
 import '../widgets/movie_card.dart';
+import '../providers/movies_provider.dart';
 
 @RoutePage()
-class MoviesPage extends StatelessWidget {
+class MoviesPage extends StatefulWidget {
   const MoviesPage({super.key});
+
+  @override
+  State<MoviesPage> createState() => _MoviesPageState();
+}
+
+class _MoviesPageState extends State<MoviesPage> {
+  @override
+  void initState() {
+    super.initState();
+    Future.microtask(() => context.read<MoviesProvider>().getMovies());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,29 +30,43 @@ class MoviesPage extends StatelessWidget {
         title: Text('Movie Browser', style: TextStyle(fontSize: 20.sp)),
         centerTitle: true,
       ),
-      body: Center(
-        child: CarouselSlider.builder(
-          itemCount: 5, // Placeholder count
-          itemBuilder: (context, index, realIndex) {
-            return MovieCard(
-              onTap: () {
-                // Navigate to details
+      body: Consumer<MoviesProvider>(
+        builder: (context, provider, child) {
+          if (provider.isLoading) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          if (provider.movies.isEmpty) {
+            return const Center(child: Text('No movies found'));
+          }
+
+          return Center(
+            child: CarouselSlider.builder(
+              itemCount: provider.movies.length,
+              itemBuilder: (context, index, realIndex) {
+                final movie = provider.movies[index];
+                return MovieCard(
+                  onTap: () {
+                    // Navigate to details
+                  },
+                  onFavoriteTap: () {
+                    // Toggle favorite
+                  },
+                  movie: movie,
+                  isFavorite: false,
+                );
               },
-              onFavoriteTap: () {
-                // Toggle favorite
-              },
-              isFavorite: false,
-            );
-          },
-          options: CarouselOptions(
-            height: 450.h,
-            enlargeCenterPage: true,
-            enableInfiniteScroll: true,
-            viewportFraction: 0.66,
-            enlargeFactor: 0.3,
-            padEnds: true,
-          ),
-        ),
+              options: CarouselOptions(
+                height: 450.h,
+                enlargeCenterPage: true,
+                enableInfiniteScroll: true,
+                viewportFraction: 0.6,
+                enlargeFactor: 0.3,
+                padEnds: true,
+              ),
+            ),
+          );
+        },
       ),
     );
   }

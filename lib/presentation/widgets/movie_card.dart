@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movie_browser/utils/constants.dart';
+
+import '../../domain/entities/movie_entity.dart';
 
 class MovieCard extends StatelessWidget {
   final VoidCallback onTap;
   final VoidCallback onFavoriteTap;
+  final MovieEntity movie;
   final bool isFavorite;
 
   const MovieCard({
     super.key,
     required this.onTap,
     required this.onFavoriteTap,
+    required this.movie,
     this.isFavorite = false,
   });
 
@@ -36,51 +41,68 @@ class MovieCard extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.vertical(top: Radius.circular(16.r)),
-              child: Container(
-                height: 200.h,
-                color: Colors.grey[300],
-                child: Center(
-                  child: Icon(Icons.movie, size: 50.r, color: Colors.grey[400]),
-                ),
-              ),
+              child: movie.posterPath.isNotEmpty
+                  ? Image.network(
+                      '${Constants.tmdbPosterImageBaseEndpoint}${movie.posterPath}',
+                      height: 200.h,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                    )
+                  // Placeholder for missing image
+                  : Container(
+                      height: 200.h,
+                      color: Colors.grey[300],
+                      child: Center(
+                        child: Icon(
+                          Icons.movie,
+                          size: 50.r,
+                          color: Colors.grey[400],
+                        ),
+                      ),
+                    ),
             ),
-            Padding(
-              padding: EdgeInsets.all(12.r),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: Text(
-                          'Movie Title Placeholder',
-                          style: TextStyle(
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.bold,
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.all(12.r),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            movie.title,
+                            style: TextStyle(
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
                           ),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
+                        ),
+                        IconButton(
+                          icon: Icon(
+                            isFavorite ? Icons.favorite : Icons.favorite_border,
+                            color: isFavorite ? Colors.red : Colors.grey,
+                            size: 24.r,
+                          ),
+                          onPressed: onFavoriteTap,
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 8.h),
+                    Expanded(
+                      child: Text(
+                        movie.overview,
+                        style: TextStyle(
+                          fontSize: 14.sp,
+                          color: Colors.grey[600],
                         ),
                       ),
-                      IconButton(
-                        icon: Icon(
-                          isFavorite ? Icons.favorite : Icons.favorite_border,
-                          color: isFavorite ? Colors.red : Colors.grey,
-                          size: 24.r,
-                        ),
-                        onPressed: onFavoriteTap,
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 8.h),
-                  Text(
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-                    style: TextStyle(fontSize: 14.sp, color: Colors.grey[600]),
-                    maxLines: 3,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
