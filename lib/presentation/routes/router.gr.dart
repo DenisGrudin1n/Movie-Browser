@@ -10,12 +10,10 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i4;
-import 'package:movie_browser/presentation/routes/pages/favorites_page.dart'
-    as _i1;
-import 'package:movie_browser/presentation/routes/pages/movies_details_page.dart'
+import 'package:movie_browser/presentation/pages/favorites_page.dart' as _i1;
+import 'package:movie_browser/presentation/pages/movies_details_page.dart'
     as _i2;
-import 'package:movie_browser/presentation/routes/pages/movies_page.dart'
-    as _i3;
+import 'package:movie_browser/presentation/pages/movies_page.dart' as _i3;
 
 /// generated route for
 /// [_i1.FavoritesPage]
