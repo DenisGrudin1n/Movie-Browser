@@ -3,6 +3,7 @@ class MovieEntity {
   final String title;
   final String overview;
   final String posterPath;
+  final String releaseDate;
   final bool isFavorite;
 
   MovieEntity({
@@ -10,6 +11,7 @@ class MovieEntity {
     required this.title,
     required this.overview,
     required this.posterPath,
+    required this.releaseDate,
     this.isFavorite = false,
   });
 }

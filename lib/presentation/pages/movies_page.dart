@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:movie_browser/presentation/routes/router.gr.dart';
 import 'package:provider/provider.dart';
 
 import '../widgets/movie_card.dart';
@@ -47,7 +48,7 @@ class _MoviesPageState extends State<MoviesPage> {
                 final movie = provider.movies[index];
                 return MovieCard(
                   onTap: () {
-                    // Navigate to details
+                    context.router.push(MoviesDetailsRoute(movie: movie));
                   },
                   onFavoriteTap: () {
                     // Toggle favorite

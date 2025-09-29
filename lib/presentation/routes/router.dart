@@ -11,7 +11,7 @@ class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
     AutoRoute(page: MoviesRoute.page, initial: true),
-    AutoRoute(page: MoviesDetailsRoute.page),
+    AutoRoute(page: MoviesDetailsRoute.page, path: '/movie-details/:id'),
     AutoRoute(page: FavoritesRoute.page),
   ];
 }
