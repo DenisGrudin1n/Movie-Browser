@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movie_browser/utils/constants.dart';
 
 class BottomNavBar extends StatelessWidget {
   const BottomNavBar({super.key, required this.tabsRouter});
@@ -14,7 +15,7 @@ class BottomNavBar extends StatelessWidget {
         currentIndex: tabsRouter.activeIndex,
         onTap: tabsRouter.setActiveIndex,
         backgroundColor: Colors.grey[850],
-        selectedItemColor: Colors.amber[500],
+        selectedItemColor: Constants.amber,
         unselectedItemColor: Colors.grey,
         items: const [
           BottomNavigationBarItem(

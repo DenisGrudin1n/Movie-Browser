@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movie_browser/utils/constants.dart';
 
 class MovieAppBar extends StatelessWidget implements PreferredSizeWidget {
   const MovieAppBar({super.key, required this.tabsRouter});
@@ -17,7 +18,7 @@ class MovieAppBar extends StatelessWidget implements PreferredSizeWidget {
         style: TextStyle(fontSize: 20.sp),
       ),
       centerTitle: true,
-      backgroundColor: Colors.amber[500],
+      backgroundColor: Constants.amber,
     );
   }
 }

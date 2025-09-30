@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:movie_browser/domain/entities/movie_entity.dart';
 import 'package:movie_browser/presentation/widgets/movie_details_appbar.dart';
 import 'package:movie_browser/presentation/widgets/movie_details_card.dart';
+import 'package:movie_browser/utils/constants.dart';
 
 @RoutePage()
 class MovieDetailsPage extends StatelessWidget {
@@ -13,7 +14,7 @@ class MovieDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[900],
+      backgroundColor: Constants.backgroundDark,
       body: CustomScrollView(
         slivers: [
           MovieDetailsAppBar(movie: movie),

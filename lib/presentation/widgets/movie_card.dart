@@ -19,7 +19,7 @@ class MovieCard extends StatelessWidget {
         width: 300.w,
         margin: EdgeInsets.symmetric(horizontal: 8.w, vertical: 16.h),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Constants.mainLight,
           borderRadius: BorderRadius.circular(16.r),
           boxShadow: [
             BoxShadow(
@@ -37,13 +37,13 @@ class MovieCard extends StatelessWidget {
               child: movie.posterPath.isNotEmpty
                   ? Image.network(
                       '${Constants.tmdbPosterImageBaseEndpoint}${movie.posterPath}',
-                      height: 200.h,
+                      height: 300.h,
                       width: double.infinity,
-                      fit: BoxFit.cover,
+                      fit: BoxFit.fill,
                     )
                   // Placeholder for missing image
                   : Container(
-                      height: 200.h,
+                      height: 300.h,
                       color: Colors.grey[300],
                       child: Center(
                         child: Icon(
@@ -83,9 +83,9 @@ class MovieCard extends StatelessWidget {
                                 context.watch<FavoritesProvider>().isFavorite(
                                   movie,
                                 )
-                                ? Colors.red
-                                : Colors.grey,
-                            size: 24.r,
+                                ? Constants.red
+                                : Constants.grey,
+                            size: 26.r,
                           ),
                           onPressed: () {
                             context.read<FavoritesProvider>().toggleFavorite(
@@ -97,12 +97,32 @@ class MovieCard extends StatelessWidget {
                     ),
                     SizedBox(height: 8.h),
                     Expanded(
-                      child: Text(
-                        movie.overview,
-                        style: TextStyle(
-                          fontSize: 14.sp,
-                          color: Colors.grey[600],
-                        ),
+                      child: LayoutBuilder(
+                        builder: (context, constraints) {
+                          // Calculate approximate number of lines that can fit
+                          // based on available height and text line height
+                          final textStyle = TextStyle(
+                            fontSize: 14.sp,
+                            color: Colors.grey[600],
+                            height: 1.2,
+                          );
+                          final textHeight =
+                              textStyle.fontSize! * textStyle.height!;
+
+                          // Ensure we have at least 1 line even during animation
+                          final calculatedLines =
+                              (constraints.maxHeight / textHeight).floor();
+                          final maxLines = calculatedLines > 0
+                              ? calculatedLines
+                              : 1;
+
+                          return Text(
+                            movie.overview,
+                            style: textStyle,
+                            maxLines: maxLines,
+                            overflow: TextOverflow.ellipsis,
+                          );
+                        },
                       ),
                     ),
                   ],

@@ -5,6 +5,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:movie_browser/presentation/providers/movies_provider.dart';
 import 'package:movie_browser/presentation/routes/router.gr.dart';
 import 'package:movie_browser/presentation/widgets/movie_card.dart';
+import 'package:movie_browser/utils/constants.dart';
 import 'package:provider/provider.dart';
 
 @RoutePage()
@@ -19,8 +20,9 @@ class _MoviesPageState extends State<MoviesPage> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() async {
-      await context.read<MoviesProvider>().getMovies();
+    Future.microtask(() {
+      if (!mounted) return;
+      context.read<MoviesProvider>().getMovies();
     });
   }
 
@@ -29,7 +31,9 @@ class _MoviesPageState extends State<MoviesPage> {
     return Consumer<MoviesProvider>(
       builder: (context, provider, child) {
         if (provider.isLoading) {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(
+            child: CircularProgressIndicator(color: Constants.amber),
+          );
         }
 
         if (provider.movies.isEmpty) {
@@ -49,7 +53,7 @@ class _MoviesPageState extends State<MoviesPage> {
               );
             },
             options: CarouselOptions(
-              height: 450.h,
+              height: 550.h,
               enlargeCenterPage: true,
               enableInfiniteScroll: true,
               viewportFraction: 0.6,

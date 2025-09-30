@@ -52,7 +52,7 @@ class FavoriteMovieCard extends StatelessWidget {
                           child: Text(
                             movie.title,
                             style: TextStyle(
-                              color: Colors.white,
+                              color: Constants.mainLight,
                               fontSize: 16.sp,
                               fontWeight: FontWeight.bold,
                             ),

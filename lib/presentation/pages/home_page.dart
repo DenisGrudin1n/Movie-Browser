@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:movie_browser/presentation/routes/router.gr.dart';
 import 'package:movie_browser/presentation/widgets/bottom_nav_bar.dart';
 import 'package:movie_browser/presentation/widgets/movie_appbar.dart';
+import 'package:movie_browser/utils/constants.dart';
 
 @RoutePage()
 class HomePage extends StatelessWidget {
@@ -15,7 +16,7 @@ class HomePage extends StatelessWidget {
       builder: (context, child) {
         final tabsRouter = AutoTabsRouter.of(context);
         return Scaffold(
-          backgroundColor: Colors.grey[900],
+          backgroundColor: Constants.backgroundDark,
           appBar: MovieAppBar(tabsRouter: tabsRouter),
           body: child,
           bottomNavigationBar: BottomNavBar(tabsRouter: tabsRouter),

@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie_browser/presentation/providers/favorites_provider.dart';
 import 'package:movie_browser/presentation/routes/router.gr.dart';
 import 'package:movie_browser/presentation/widgets/favorite_movie_card.dart';
+import 'package:movie_browser/utils/constants.dart';
 import 'package:provider/provider.dart';
 
 @RoutePage()
@@ -13,14 +14,14 @@ class FavoritesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[900],
+      backgroundColor: Constants.backgroundDark,
       body: Consumer<FavoritesProvider>(
         builder: (context, provider, child) {
           if (provider.favorites.isEmpty) {
             return Center(
               child: Text(
                 'No favorite movies yet',
-                style: TextStyle(color: Colors.white, fontSize: 16.sp),
+                style: TextStyle(color: Constants.mainLight, fontSize: 16.sp),
               ),
             );
           }

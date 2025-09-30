@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie_browser/domain/entities/movie_entity.dart';
 import 'package:movie_browser/presentation/providers/favorites_provider.dart';
+import 'package:movie_browser/utils/constants.dart';
 import 'package:provider/provider.dart';
 
 class MovieDetailsCard extends StatelessWidget {
@@ -25,7 +26,7 @@ class MovieDetailsCard extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 24.sp,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      color: Constants.mainLight,
                     ),
                   ),
                 ),
@@ -35,8 +36,8 @@ class MovieDetailsCard extends StatelessWidget {
                         ? Icons.favorite
                         : Icons.favorite_border,
                     color: context.watch<FavoritesProvider>().isFavorite(movie)
-                        ? Colors.red
-                        : Colors.grey,
+                        ? Constants.red
+                        : Constants.grey,
                     size: 32.r,
                   ),
                   onPressed: () {
@@ -55,7 +56,7 @@ class MovieDetailsCard extends StatelessWidget {
               movie.overview,
               style: TextStyle(
                 fontSize: 16.sp,
-                color: Colors.white,
+                color: Constants.mainLight,
                 height: 1.5,
               ),
             ),
