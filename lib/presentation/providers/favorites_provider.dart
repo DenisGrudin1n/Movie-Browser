@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
-import '../../data/services/storage_service.dart';
-import '../../domain/entities/movie_entity.dart';
+
+import 'package:movie_browser/data/services/storage_service.dart';
+import 'package:movie_browser/domain/entities/movie_entity.dart';
 
 class FavoritesProvider extends ChangeNotifier {
   final StorageService _storageService;

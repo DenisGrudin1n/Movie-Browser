@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../domain/entities/movie_entity.dart';
-import '../../domain/usecases/get_movies_usecase.dart';
+import 'package:movie_browser/domain/entities/movie_entity.dart';
+import 'package:movie_browser/domain/usecases/get_movies_usecase.dart';
 
 class MoviesProvider extends ChangeNotifier {
   final GetMoviesUseCase _getMoviesUseCase;

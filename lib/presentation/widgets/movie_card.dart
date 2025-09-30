@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movie_browser/domain/entities/movie_entity.dart';
+import 'package:movie_browser/presentation/providers/favorites_provider.dart';
 import 'package:movie_browser/utils/constants.dart';
 import 'package:provider/provider.dart';
-
-import '../../domain/entities/movie_entity.dart';
-import '../providers/favorites_provider.dart';
 
 class MovieCard extends StatelessWidget {
   final VoidCallback onTap;

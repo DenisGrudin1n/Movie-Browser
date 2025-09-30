@@ -2,11 +2,10 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:movie_browser/presentation/providers/movies_provider.dart';
 import 'package:movie_browser/presentation/routes/router.gr.dart';
+import 'package:movie_browser/presentation/widgets/movie_card.dart';
 import 'package:provider/provider.dart';
-
-import '../widgets/movie_card.dart';
-import '../providers/movies_provider.dart';
 
 @RoutePage()
 class MoviesPage extends StatefulWidget {
