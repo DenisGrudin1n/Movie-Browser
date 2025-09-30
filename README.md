@@ -4,9 +4,9 @@ A Flutter application that allows users to browse and favorite movies using The 
 
 ## Screenshots
 
-<img width="270" height="555" alt="Screenshot_1759254938" src="https://github.com/user-attachments/assets/ed937360-8cd5-40be-af6e-b66633d3464b" />ㅤ
-<img width="270" height="555" alt="Screenshot_1759254946" src="https://github.com/user-attachments/assets/3333b710-43a8-42be-bcfd-e2321ee59afe" />ㅤ
-<img width="270" height="555" alt="Screenshot_1759254964" src="https://github.com/user-attachments/assets/d41de033-1f49-4400-bf21-d589cad654fa" />
+<img width="250" height="510" alt="Screenshot_1759254938" src="https://github.com/user-attachments/assets/ed937360-8cd5-40be-af6e-b66633d3464b" />ㅤ
+<img width="250" height="510" alt="Screenshot_1759254946" src="https://github.com/user-attachments/assets/3333b710-43a8-42be-bcfd-e2321ee59afe" />ㅤ
+<img width="250" height="510" alt="Screenshot_1759254964" src="https://github.com/user-attachments/assets/d41de033-1f49-4400-bf21-d589cad654fa" />
 
 ## Features
 
