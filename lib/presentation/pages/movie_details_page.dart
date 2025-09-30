@@ -61,13 +61,18 @@ class MovieDetailsPage extends StatelessWidget {
                           context.watch<FavoritesProvider>().isFavorite(movie)
                               ? Icons.favorite
                               : Icons.favorite_border,
-                          color: context.watch<FavoritesProvider>().isFavorite(movie) 
-                              ? Colors.red 
+                          color:
+                              context.watch<FavoritesProvider>().isFavorite(
+                                movie,
+                              )
+                              ? Colors.red
                               : Colors.grey,
                           size: 32.r,
                         ),
                         onPressed: () {
-                          context.read<FavoritesProvider>().toggleFavorite(movie);
+                          context.read<FavoritesProvider>().toggleFavorite(
+                            movie,
+                          );
                         },
                       ),
                     ],

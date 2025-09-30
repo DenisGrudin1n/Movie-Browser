@@ -20,7 +20,9 @@ class _MoviesPageState extends State<MoviesPage> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() => context.read<MoviesProvider>().getMovies());
+    Future.microtask(() async {
+      await context.read<MoviesProvider>().getMovies();
+    });
   }
 
   @override

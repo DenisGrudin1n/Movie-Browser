@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
       child: MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (_) => di.sl<MoviesProvider>()),
-          ChangeNotifierProvider(create: (_) => FavoritesProvider()),
+          ChangeNotifierProvider(create: (_) => di.sl<FavoritesProvider>()),
         ],
         child: MaterialApp.router(
           routerConfig: appRouter.config(),

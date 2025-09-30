@@ -5,4 +5,5 @@ class Constants {
 
   static const String tmdbPosterImageBaseEndpoint =
       'https://image.tmdb.org/t/p/w500';
+  static const favoritesKey = 'favorites';
 }

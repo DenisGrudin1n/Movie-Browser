@@ -10,11 +10,7 @@ class MovieCard extends StatelessWidget {
   final VoidCallback onTap;
   final MovieEntity movie;
 
-  const MovieCard({
-    super.key,
-    required this.onTap,
-    required this.movie,
-  });
+  const MovieCard({super.key, required this.onTap, required this.movie});
 
   @override
   Widget build(BuildContext context) {
@@ -84,13 +80,18 @@ class MovieCard extends StatelessWidget {
                             context.watch<FavoritesProvider>().isFavorite(movie)
                                 ? Icons.favorite
                                 : Icons.favorite_border,
-                            color: context.watch<FavoritesProvider>().isFavorite(movie)
+                            color:
+                                context.watch<FavoritesProvider>().isFavorite(
+                                  movie,
+                                )
                                 ? Colors.red
                                 : Colors.grey,
                             size: 24.r,
                           ),
                           onPressed: () {
-                            context.read<FavoritesProvider>().toggleFavorite(movie);
+                            context.read<FavoritesProvider>().toggleFavorite(
+                              movie,
+                            );
                           },
                         ),
                       ],
