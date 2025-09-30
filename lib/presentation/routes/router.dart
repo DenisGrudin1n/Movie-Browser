@@ -10,8 +10,15 @@ class AppRouter extends RootStackRouter {
 
   @override
   List<AutoRoute> get routes => [
-    AutoRoute(page: MoviesRoute.page, initial: true),
-    AutoRoute(page: MoviesDetailsRoute.page, path: '/movie-details/:id'),
-    AutoRoute(page: FavoritesRoute.page),
+    AutoRoute(
+      path: '/',
+      page: HomeRoute.page,
+      initial: true,
+      children: [
+        AutoRoute(path: 'movies', page: MoviesRoute.page, initial: true),
+        AutoRoute(path: 'favorites', page: FavoritesRoute.page),
+      ],
+    ),
+    AutoRoute(path: '/movie-details/:id', page: MovieDetailsRoute.page),
   ];
 }

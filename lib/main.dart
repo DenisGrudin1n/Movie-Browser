@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 
 import 'injection.dart' as di;
 import 'presentation/providers/movies_provider.dart';
+import 'presentation/providers/favorites_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
       child: MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (_) => di.sl<MoviesProvider>()),
+          ChangeNotifierProvider(create: (_) => FavoritesProvider()),
         ],
         child: MaterialApp.router(
           routerConfig: appRouter.config(),

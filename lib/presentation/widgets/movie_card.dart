@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie_browser/utils/constants.dart';
+import 'package:provider/provider.dart';
 
 import '../../domain/entities/movie_entity.dart';
+import '../providers/favorites_provider.dart';
 
 class MovieCard extends StatelessWidget {
   final VoidCallback onTap;
-  final VoidCallback onFavoriteTap;
   final MovieEntity movie;
-  final bool isFavorite;
 
   const MovieCard({
     super.key,
     required this.onTap,
-    required this.onFavoriteTap,
     required this.movie,
-    this.isFavorite = false,
   });
 
   @override
@@ -83,11 +81,17 @@ class MovieCard extends StatelessWidget {
                         ),
                         IconButton(
                           icon: Icon(
-                            isFavorite ? Icons.favorite : Icons.favorite_border,
-                            color: isFavorite ? Colors.red : Colors.grey,
+                            context.watch<FavoritesProvider>().isFavorite(movie)
+                                ? Icons.favorite
+                                : Icons.favorite_border,
+                            color: context.watch<FavoritesProvider>().isFavorite(movie)
+                                ? Colors.red
+                                : Colors.grey,
                             size: 24.r,
                           ),
-                          onPressed: onFavoriteTap,
+                          onPressed: () {
+                            context.read<FavoritesProvider>().toggleFavorite(movie);
+                          },
                         ),
                       ],
                     ),

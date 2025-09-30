@@ -25,50 +25,39 @@ class _MoviesPageState extends State<MoviesPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey[900],
-      appBar: AppBar(
-        title: Text('Movie Browser', style: TextStyle(fontSize: 20.sp)),
-        centerTitle: true,
-      ),
-      body: Consumer<MoviesProvider>(
-        builder: (context, provider, child) {
-          if (provider.isLoading) {
-            return const Center(child: CircularProgressIndicator());
-          }
+    return Consumer<MoviesProvider>(
+      builder: (context, provider, child) {
+        if (provider.isLoading) {
+          return const Center(child: CircularProgressIndicator());
+        }
 
-          if (provider.movies.isEmpty) {
-            return const Center(child: Text('No movies found'));
-          }
+        if (provider.movies.isEmpty) {
+          return const Center(child: Text('No movies found'));
+        }
 
-          return Center(
-            child: CarouselSlider.builder(
-              itemCount: provider.movies.length,
-              itemBuilder: (context, index, realIndex) {
-                final movie = provider.movies[index];
-                return MovieCard(
-                  onTap: () {
-                    context.router.push(MoviesDetailsRoute(movie: movie));
-                  },
-                  onFavoriteTap: () {
-                    // Toggle favorite
-                  },
-                  movie: movie,
-                  isFavorite: false,
-                );
-              },
-              options: CarouselOptions(
-                height: 450.h,
-                enlargeCenterPage: true,
-                enableInfiniteScroll: true,
-                viewportFraction: 0.6,
-                enlargeFactor: 0.3,
-                padEnds: true,
-              ),
+        return Center(
+          child: CarouselSlider.builder(
+            itemCount: provider.movies.length,
+            itemBuilder: (context, index, realIndex) {
+              final movie = provider.movies[index];
+              return MovieCard(
+                onTap: () {
+                  context.router.push(MovieDetailsRoute(movie: movie));
+                },
+                movie: movie,
+              );
+            },
+            options: CarouselOptions(
+              height: 450.h,
+              enlargeCenterPage: true,
+              enableInfiniteScroll: true,
+              viewportFraction: 0.6,
+              enlargeFactor: 0.3,
+              padEnds: true,
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }

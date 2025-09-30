@@ -1,14 +1,16 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import '../../domain/entities/movie_entity.dart';
 import '../../utils/constants.dart';
+import '../providers/favorites_provider.dart';
 
 @RoutePage()
-class MoviesDetailsPage extends StatelessWidget {
+class MovieDetailsPage extends StatelessWidget {
   final MovieEntity movie;
 
-  const MoviesDetailsPage({super.key, required this.movie});
+  const MovieDetailsPage({super.key, required this.movie});
 
   @override
   Widget build(BuildContext context) {
@@ -56,14 +58,16 @@ class MoviesDetailsPage extends StatelessWidget {
                       ),
                       IconButton(
                         icon: Icon(
-                          movie.isFavorite
+                          context.watch<FavoritesProvider>().isFavorite(movie)
                               ? Icons.favorite
                               : Icons.favorite_border,
-                          color: movie.isFavorite ? Colors.red : Colors.grey,
+                          color: context.watch<FavoritesProvider>().isFavorite(movie) 
+                              ? Colors.red 
+                              : Colors.grey,
                           size: 32.r,
                         ),
                         onPressed: () {
-                          // Toggle favorite functionality will be added later
+                          context.read<FavoritesProvider>().toggleFavorite(movie);
                         },
                       ),
                     ],
