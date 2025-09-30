@@ -17,6 +17,7 @@ class MovieAppBar extends StatelessWidget implements PreferredSizeWidget {
         style: TextStyle(fontSize: 20.sp),
       ),
       centerTitle: true,
+      backgroundColor: Colors.amber[500],
     );
   }
 }
